@@ -4,7 +4,8 @@
 # Créditos:
 Lavender
 
-Manectric-Rang (Ayuda con la mayoria de scripts, arreglo de varios sprites, creador de musica de Miror B, Demigrancia, La Santa Espina Sardana, A Cruel Angel's Thesis, y Fiesta Pagana )
+Manectric-Rang (Ayuda con la mayoria de scripts, arreglo de varios sprites, creador de musica de Miror B, Demigrancia, La Santa Espina Sardana, A Cruel Angel's Thesis, y Fiesta Pagana
+Url de su Soundcloud --> https://soundcloud.com/manectric-rang/sets/midele )
 
 -Sapphire- (Arreglo de varios sprites, diseño de Dark Pika y de todos los sprites y char de la chica protagonista)
 
