@@ -9,6 +9,8 @@ Url de su Soundcloud --> https://soundcloud.com/manectric-rang/sets/midele )
 
 -Sapphire- (Arreglo de varios sprites, diseño de Dark Pika y de todos los sprites y char de la chica protagonista)
 
+Pret (Creador de pokered original https://github.com/pret/pokered )
+
 MerúM (sprites front y back de Nosepass, Probopass, Yamask, Cofagrigus, Mimikyu, Zoroark, Mudkip y Altaria. Sprite Front de Scizor)
 
 Mmmmmmmmmmmmmmmmm (Varias musicas https://soundcloud.com/mmmmmmmmmmmmmmmmm-1 )
