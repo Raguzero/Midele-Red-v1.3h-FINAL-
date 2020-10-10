@@ -1,0 +1,27 @@
+IslandMonsB3:
+	db $0A
+	IF DEF(_RED)
+		db 37,SLOWPOKE
+		db 37,SEEL
+		db 37,SLOWPOKE
+		db 37,SNOVER
+		db 28,HORSEA
+		db 38,SHELLDER
+		db 38,HORSEA
+		db 39,SNEASEL
+		db 39,SEADRA
+		db 41,DEWGONG
+	ENDC
+	IF DEF(_BLUE)
+		db 31,PSYDUCK
+		db 31,SEEL
+		db 33,PSYDUCK
+		db 33,SEEL
+		db 29,KRABBY
+		db 31,STARYU
+		db 31,KRABBY
+		db 29,STARYU
+		db 39,KINGLER
+		db 37,DEWGONG
+	ENDC
+	db $00

@@ -1,0 +1,13 @@
+Route18Mons:
+	db $19
+	db 33,SPEAROW
+	db 34,NUMEL
+	db 35,SKARMORY
+	db 34,DODUO
+	db 35,FEAROW
+	db 36,DODUO
+	db 36,DODUO
+	db 39,RATICATE
+	db 37,SKARMORY
+	db 39,FEAROW
+	db $00

@@ -1,0 +1,13 @@
+Route17Mons:
+	db $19
+	db 32,PONYTA
+	db 31,NUMEL
+	db 32,SKARMORY
+	db 31,DODUO
+	db 34,RATICATE
+	db 32,NUMEL
+	db 33,MILTANK
+	db 33,TAUROS
+	db 34,MILTANK
+	db 34,TAUROS
+	db $00

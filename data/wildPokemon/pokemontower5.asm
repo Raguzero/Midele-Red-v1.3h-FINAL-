@@ -1,0 +1,13 @@
+TowerMons5:
+	db $0A
+	db 30,GASTLY
+	db 31,LITWICK
+	db 33,YAMASK
+	db 29,GASTLY
+	db 35,HAUNTER
+	db 30,CUBONE
+	db 28,MIMIKYU
+	db 30,CUBONE
+	db 32,CUBONE
+	db 34,MIMIKYU
+	db $00

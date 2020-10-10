@@ -1,0 +1,56 @@
+TitleMons:
+; mons on the title screen are randomly chosen from here
+IF DEF(_RED)
+    dw MICOMON
+	dw DARK_PIKA
+	dw CATERMANO
+	dw ARTICUNO
+    dw ZAPDOS
+	dw MOLTRES
+	dw MEWTWO
+	dw MEW
+    dw TYRANITAR
+	dw DRAGONITE
+	dw COFAGRIGUS
+	dw MIMIKYU
+    dw YAMASK
+	dw NOSEPASS
+	dw PROBOPASS
+	dw FLYGON
+ENDC
+IF DEF(_GREEN)
+    dw BULBASAUR
+	dw CHARMANDER
+	dw SQUIRTLE
+	dw CATERPIE
+	dw NIDORAN_F
+	dw PINSIR
+	dw PIKACHU
+	dw CLEFAIRY
+	dw RHYDON
+	dw ABRA
+	dw GASTLY
+	dw DITTO
+	dw PIDGEOTTO
+	dw ONIX
+	dw PONYTA
+	dw MAGIKARP
+ENDC
+IF DEF(_BLUE)
+dw SQUIRTLE
+	dw CHARMANDER
+	dw BULBASAUR
+	dw MANKEY
+	dw HITMONLEE
+	dw VULPIX
+	dw CHANSEY
+	dw AERODACTYL
+	dw JOLTEON
+	dw SNORLAX
+	dw GLOOM
+	dw POLIWAG
+	dw DODUO
+	dw PORYGON
+	dw GENGAR
+	dw RAICHU
+ENDC

@@ -1,0 +1,13 @@
+Route23Mons:
+	db $0A
+	db 46,GLIGAR
+	db 53,DITTO
+	db 46,SKARMORY
+	db 44,DRAMPA
+	db 44,SNEASEL
+	db 48,HERACROSS
+	db 51,ARBOK
+	db 48,DRAPION
+	db 44,DRAMPA
+	db 49,DRAMPA
+	db $00

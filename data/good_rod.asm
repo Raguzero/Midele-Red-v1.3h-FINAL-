@@ -1,0 +1,6 @@
+GoodRodMons:
+	db 30,GOLDEEN
+	db 30,SHELLDER
+	db 30,CHINCHOU
+	db 30,STARYU
+	db 30,POLIWAG

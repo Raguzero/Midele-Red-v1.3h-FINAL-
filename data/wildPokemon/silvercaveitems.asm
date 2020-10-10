@@ -1,0 +1,13 @@
+SilverMonsItem:
+	db $0F
+	db 48, GOLBAT
+	db 46, GOLBAT
+	db 50, GOLBAT
+	db 46, PARASECT
+	db 48, PARASECT
+	db 50, PARASECT
+	db 52, PARASECT
+	db 45, HAUNTER
+	db 50, GOLBAT
+	db 55, PARASECT
+	db $00

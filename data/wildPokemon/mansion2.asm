@@ -1,0 +1,27 @@
+MansionMons2:
+	db $0A
+	IF DEF(_RED)
+		db 42,GROWLITHE
+		db 39,KOFFING
+		db 40,KOFFING
+		db 41,PONYTA
+		db 38,MAGMAR
+		db 41,PONYTA
+		db 42,GRIMER
+		db 42,DUOSION
+		db 43,WEEZING
+		db 43,MUK
+	ENDC
+	IF DEF(_BLUE)
+		db 32,VULPIX
+		db 34,GRIMER
+		db 34,GRIMER
+		db 30,PONYTA
+		db 30,GRIMER
+		db 32,PONYTA
+		db 30,KOFFING
+		db 28,PONYTA
+		db 39,MUK
+		db 37,WEEZING
+	ENDC
+	db $00

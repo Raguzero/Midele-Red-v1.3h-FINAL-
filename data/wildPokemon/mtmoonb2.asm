@@ -1,0 +1,13 @@
+MoonMonsB2:
+	db $0A
+	db 9,ZUBAT
+	db 9,GEODUDE
+	db 10,AMAURA
+	db 14,TYNAMO
+	db 11,KOFFING
+	db 10,POIPOLE
+	db 12,PARAS
+	db 10,CLEFAIRY
+	db 12,CLEFAIRY
+	db 12,CHANSEY
+	db $00

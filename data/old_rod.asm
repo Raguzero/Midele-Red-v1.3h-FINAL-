@@ -1,0 +1,6 @@
+OldRodMons:
+	db 5,MAGIKARP
+	db 20,CHINCHOU
+	db 20,KRABBY
+	db 20,POLIWAG
+	db 20,KRABBY

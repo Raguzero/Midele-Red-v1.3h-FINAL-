@@ -1,0 +1,13 @@
+TowerMons7:
+	db $0F
+	db 31,GASTLY
+	db 32,LITWICK
+	db 33,GASTLY
+	db 34,YAMASK
+	db 30,GASTLY
+	db 28,MIMIKYU
+	db 32,CUBONE
+	db 34,CUBONE
+	db 31,HAUNTER
+	db 33,HAUNTER
+	db $00

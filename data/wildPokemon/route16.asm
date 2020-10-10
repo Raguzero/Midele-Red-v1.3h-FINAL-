@@ -1,0 +1,13 @@
+Route16Mons:
+	db $19
+	db 23,MURKROW
+	db 24,MURKROW
+	db 27,NUMEL
+	db 23,DODUO
+	db 27,GRIMER
+	db 23,DODUO
+	db 24,DODUO
+	db 27,NUMEL
+	db 27,RATICATE
+	db 28,RATICATE
+	db $00

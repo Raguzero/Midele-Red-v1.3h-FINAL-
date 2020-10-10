@@ -1,0 +1,15 @@
+TradeMons:
+; givemonster, getmonster, textstring, nickname (11 bytes), 14 bytes total
+	db NIDORINO,  NIDORINA, 0,"TERRY@@@@@@"
+	;db ABRA,      MR_MIME,  0,"MARCEL@@@@@"
+	db SOLOSIS,      OMANYTE,  0,"OMANYTE@@@@"
+	db BUTTERFREE,BEEDRILL, 2,"CHIKUCHIKU@"
+	db PONYTA,    SKARMORY,     0,"EEAMUDO@@@@"
+	db SPEAROW,   FARFETCHD,2,"DUX@@@@@@@@"
+	db SLOWBRO,   LICKITUNG,0,"MARC@@@@@@@"
+	;db POLIWHIRL, JYNX,     1,"LOLA@@@@@@@"
+	db SWABLU, SEEL,     1,"SAILOR@@@@@"
+	db RAICHU,    ELECTRODE,1,"DORIS@@@@@@"
+	db VENONAT,   TANGELA,  2,"CRINKLES@@@"
+	;db NIDORAN_M, NIDORAN_F,2,"SPOT@@@@@@@"
+	db SLOWPOKE, KABUTO,2,"KABUTO@@@@@"

@@ -1,0 +1,13 @@
+DungeonMonsB1:
+	db $19
+	db 100,DITTO
+	db 70,CHANSEY
+	db 70,CHANSEY
+	db 70,CHANSEY
+	db 80,CHANSEY
+	db 80,CHANSEY
+	db 90,CHANSEY
+	db 90,CHANSEY
+	db 100,CHANSEY
+	db 100,CHANSEY
+	db $00

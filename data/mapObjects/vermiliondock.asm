@@ -1,0 +1,15 @@
+VermilionDockObject:
+	db $f ; border block
+
+	db 2 ; warps
+	warp 14, 0, 5, -1
+	warp 14, 2, 1, SS_ANNE_1
+
+	db 0 ; signs
+
+	db 1; objects
+	object SPRITE_SLOWBRO, 21, 1, STAY, DOWN, 1, MEW, 5 | OW_POKEMON
+	
+	; warp-to
+	warp_to 14, 0, VERMILION_DOCK_WIDTH
+	warp_to 14, 2, VERMILION_DOCK_WIDTH ; SS_ANNE_1
