@@ -13,9 +13,9 @@ dw ChandelurePicFront
 dw ChandelurePicBack
 ; attacks known at lvl 0
 db EMBER
+db SMOG
 db CONFUSE_RAY
 db NIGHT_SHADE
-db 0
 db 3 ; growth rate
 ; learnset
 	tmlearn 6

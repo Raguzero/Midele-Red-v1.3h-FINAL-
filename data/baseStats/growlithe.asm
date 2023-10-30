@@ -14,7 +14,7 @@ dw GrowlithePicBack
 ; attacks known at lvl 0
 db BITE
 db ROAR
-db 0
+db LEER
 db 0
 db 5 ; growth rate
 ; learnset

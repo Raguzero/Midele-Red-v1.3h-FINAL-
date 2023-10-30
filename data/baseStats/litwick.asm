@@ -13,7 +13,7 @@ dw LitwickPicFront
 dw LitwickPicBack
 ; attacks known at lvl 0
 db EMBER
-db 0
+db SMOG
 db 0
 db 0
 db 3 ; growth rate
