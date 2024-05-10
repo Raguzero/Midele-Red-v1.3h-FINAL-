@@ -24,5 +24,5 @@ db 0 ; growth rate
 	tmlearn 25,26,27,31,32
 	tmlearn 34,38,40
 	tmlearn 44,48
-	tmlearn 50,53,54
+	tmlearn 50,51,53,54
 db BANK(KangaskhanPicFront)

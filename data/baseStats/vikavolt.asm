@@ -24,5 +24,5 @@ db 0 ; growth rate
 	tmlearn 25,28,31,32
 	tmlearn 34
 	tmlearn 44,45
-	tmlearn 50
+	tmlearn 50,52
 db BANK(VikavoltPicFront)

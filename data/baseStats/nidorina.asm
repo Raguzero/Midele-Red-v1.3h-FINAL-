@@ -24,5 +24,5 @@ db 3 ; growth rate
 	tmlearn 25,28,31,32
 	tmlearn 33,34,40
 	tmlearn 44
-	tmlearn 50,51
+	tmlearn 50,51,54
 db BANK(NidorinaPicFront)

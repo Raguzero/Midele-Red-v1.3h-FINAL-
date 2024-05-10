@@ -24,5 +24,5 @@ db 5 ; growth rate
 	tmlearn 26,31,32
 	tmlearn 33,34,38,39
 	tmlearn 43,44,48
-	tmlearn 50,52
+	tmlearn 50,52,54
 db BANK(AerodactylPicFront)
