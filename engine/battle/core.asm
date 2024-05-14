@@ -3219,6 +3219,8 @@ HackDrawBattleMoveInfo:
 	ld a, [de]
 	and a
 	jr z, .powerZero
+    cp 1
+    jr z, .powerZero
 	call PrintNumber
 
 .powerZero:
