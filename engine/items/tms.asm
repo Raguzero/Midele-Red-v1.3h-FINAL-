@@ -11,6 +11,8 @@ CanLearnTM:
 	ld hl, TechnicalMachines
 .findTMloop
 	ld a, [hli]
+	cp -1 ; reached terminator?
+	jr z, .done
 	cp b
 	jr z, .TMfoundLoop
 	inc c
@@ -19,6 +21,10 @@ CanLearnTM:
 	pop hl
 	ld b, FLAG_TEST
 	predef_jump FlagActionPredef
+.done
+	pop hl
+	ld c, 0
+	ret
 
 ; converts TM/HM number in wd11e into move number
 ; HMs start at 51
@@ -32,5 +38,37 @@ TMToMove:
 	ld a, [hl]
 	ld [wd11e], a
 	ret
+
+GetTMMoves:
+    push hl
+    ld de, wRelearnableMoves ; reusing from move relearner for tmhm move list
+    ld hl, TechnicalMachines
+.checkTMloop
+    ld a, [hli]
+    cp -1 ; reached terminator?
+    jr z, .done
+    push hl
+    ld b, a
+    ld [wMoveNum], a
+    ld [wd11e], a
+    push de
+    push bc
+    predef CanLearnTM
+    ld a, c
+    and a ; can the pokemon learn the move?
+    pop bc
+    pop de
+    pop hl
+    jr z, .checkTMloop
+.canLearn
+    ld a, b
+    ld [de], a ; add move ID to list of learnable moves
+    inc de
+    jr .checkTMloop
+.done
+    ld a, 0 ; terminator
+    ld [de], a
+    pop hl
+    ret
 
 INCLUDE "data/tms.asm"

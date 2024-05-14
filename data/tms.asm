@@ -54,3 +54,4 @@ TechnicalMachines:
 	db SURF
 	db STRENGTH
 	db FLASH
+	db -1

@@ -1,6 +1,8 @@
 _DisplayPokedex:
 	ld hl, wd730
 	set 6, [hl]
+	xor a
+	ld [wMoveListCounter], a
 	predef ShowPokedexData
 	ld hl, wd730
 	res 6, [hl]
