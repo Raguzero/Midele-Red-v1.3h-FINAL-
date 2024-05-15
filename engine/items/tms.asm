@@ -48,7 +48,6 @@ GetTMMoves:
     cp -1 ; reached terminator?
     jr z, .done
     push hl
-    ld b, a
     ld [wMoveNum], a
     ld [wd11e], a
     push de
@@ -61,12 +60,18 @@ GetTMMoves:
     pop hl
     jr z, .checkTMloop
 .canLearn
-    ld a, b
-    ld [de], a ; add move ID to list of learnable moves
+	push hl
+	push de
+	ld de, -1 - TechnicalMachines
+	add hl, de
+	ld a, l
+	pop de
+	pop hl
+	ld [de], a ; add TM ID to list of learnable moves
     inc de
     jr .checkTMloop
 .done
-    ld a, 0 ; terminator
+    ld a, -1 ; terminator
     ld [de], a
     pop hl
     ret

@@ -786,7 +786,7 @@ Pokedex_PrintMovesText:
 	farcall GetTMMoves
 	ld de, wRelearnableMoves
 	ld a, [de]
-	and a
+	cp -1
 	jp z, .done2
 	push de
 	call NewPageButtonPressCheck
@@ -804,58 +804,158 @@ Pokedex_PrintMovesText:
 
 	ld a, [de]
 .first
-	cp 0
+	cp -1
 	jp z, .done2
 	push de
 	ld [wd11e], a
-	call GetMoveName
 	coord hl, 2, 12
+	inc a
+	push af
+	cp 51
+	jr nc, .mo1
+	ld de, TMText ; "TM"
+	jr .printTMHMnumber1
+.mo1
+	sub 50
+	ld de, HMText ; "HM"
+.printTMHMnumber1
+	ld [wd11e], a
+	call PlaceString
+	ld de, wd11e
+	coord hl, 4, 12
+	lb bc, LEADING_ZEROES | 1, 2
+	call PrintNumber
+	pop af
+	ld [wd11e], a
+	predef TMToMove
+	call GetMoveName
+	coord hl, 7, 12
 	call PlaceString
 	pop de
 
 	inc de
 	ld a, [de]
 .second
-	cp 0
+	cp -1
 	jp z, .done2
 	push de
 	ld [wd11e], a
-	call GetMoveName
 	coord hl, 2, 13
+	inc a
+	push af
+	cp 51
+	jr nc, .mo2
+	ld de, TMText ; "TM"
+	jr .printTMHMnumber2
+.mo2
+	sub 50
+	ld de, HMText ; "HM"
+.printTMHMnumber2
+	ld [wd11e], a
+	call PlaceString
+	ld de, wd11e
+	coord hl, 4, 13
+	lb bc, LEADING_ZEROES | 1, 2
+	call PrintNumber
+	pop af
+	ld [wd11e], a
+	predef TMToMove
+	call GetMoveName
+	coord hl, 7, 13
 	call PlaceString
 	pop de
 
 	inc de
 	ld a, [de]
 .third
-	cp 0
+	cp -1
 	jp z, .done2
 	push de
 	ld [wd11e], a
-	call GetMoveName
 	coord hl, 2, 14
+	inc a
+	push af
+	cp 51
+	jr nc, .mo3
+	ld de, TMText ; "TM"
+	jr .printTMHMnumber3
+.mo3
+	sub 50
+	ld de, HMText ; "HM"
+.printTMHMnumber3
+	ld [wd11e], a
+	call PlaceString
+	ld de, wd11e
+	coord hl, 4, 14
+	lb bc, LEADING_ZEROES | 1, 2
+	call PrintNumber
+	pop af
+	ld [wd11e], a
+	predef TMToMove
+	call GetMoveName
+	coord hl, 7, 14
 	call PlaceString
 	pop de
 .fourth
 	inc de
 	ld a, [de]
-	cp 0
+	cp -1
 	jp z, .done2
 	push de
 	ld [wd11e], a
-	call GetMoveName
 	coord hl, 2, 15
+	inc a
+	push af
+	cp 51
+	jr nc, .mo4
+	ld de, TMText ; "TM"
+	jr .printTMHMnumber4
+.mo4
+	sub 50
+	ld de, HMText ; "HM"
+.printTMHMnumber4
+	ld [wd11e], a
+	call PlaceString
+	ld de, wd11e
+	coord hl, 4, 15
+	lb bc, LEADING_ZEROES | 1, 2
+	call PrintNumber
+	pop af
+	ld [wd11e], a
+	predef TMToMove
+	call GetMoveName
+	coord hl, 7, 15
 	call PlaceString
 	pop de
 
 	inc de
 	ld a, [de]
-	cp 0
+	cp -1
 	jp z, .done2
 	push de
 	ld [wd11e], a
-	call GetMoveName
 	coord hl, 2, 16
+	inc a
+	push af
+	cp 51
+	jr nc, .mo5
+	ld de, TMText ; "TM"
+	jr .printTMHMnumber5
+.mo5
+	sub 50
+	ld de, HMText ; "HM"
+.printTMHMnumber5
+	ld [wd11e], a
+	call PlaceString
+	ld de, wd11e
+	coord hl, 4, 16
+	lb bc, LEADING_ZEROES | 1, 2
+	call PrintNumber
+	pop af
+	ld [wd11e], a
+	predef TMToMove
+	call GetMoveName
+	coord hl, 7, 16
 	call PlaceString
 	pop de
 
@@ -863,7 +963,7 @@ Pokedex_PrintMovesText:
 
 	; wait for button press
 	ld a, [de]
-	and a
+	cp -1
 	jr z, .done2
 	push de
 	call NewPageButtonPressCheck
@@ -894,6 +994,12 @@ LevelUpMovesText:
 
 TMHMMovesText:
 	db   "TM/HM MOVES:@"
+
+TMText:
+	db "TM@"
+
+HMText:
+	db "HM@"
 
 ; draws a line of tiles
 ; INPUT:
