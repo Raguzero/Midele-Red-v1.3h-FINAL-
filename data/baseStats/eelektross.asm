@@ -14,8 +14,8 @@ dw EelektrossPicBack
 ; attacks known at lvl 0
 db HEADBUTT
 db THUNDER_WAVE
+db THUNDERSHOCK
 db CRUNCH
-db 0
 db 5 ; growth rate
 ; learnset
 	tmlearn 6,8

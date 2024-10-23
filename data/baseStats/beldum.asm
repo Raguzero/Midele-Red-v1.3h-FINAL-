@@ -23,6 +23,6 @@ db 5 ; growth rate
 	tmlearn 0
 	tmlearn 0
 	tmlearn 0
-	tmlearn 0
+	tmlearn 46
 	tmlearn 0
 db BANK(BeldumPicFront)

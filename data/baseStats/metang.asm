@@ -23,6 +23,6 @@ db 5 ; growth rate
 	tmlearn 20
 	tmlearn 26,29,31,32
 	tmlearn 33,34,36,39
-	tmlearn 44,47,48
+	tmlearn 44,46,47,48
 	tmlearn 50,51,54,55
 db BANK(MetangPicFront)

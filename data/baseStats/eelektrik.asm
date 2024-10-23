@@ -14,7 +14,7 @@ dw EelektrikPicBack
 ; attacks known at lvl 0
 db HEADBUTT
 db THUNDER_WAVE
-db CRUNCH
+db THUNDERSHOCK
 db 0
 db 5 ; growth rate
 ; learnset
