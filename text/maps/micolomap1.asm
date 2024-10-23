@@ -795,6 +795,21 @@ _CurarPC::
 	text "Desea curar a sus"
 	line "#MON?"
 	done
+	
+_ActivarSalidaPC::
+	text "YES: Quitar roca"
+	line "NO: Poner roca "
+	done
+	
+_SalidaActivada::
+	text "Activada salida"
+	line "de emergencia."
+	done
+	
+_BloquearSalida::
+	text "Bloqueada salida"
+	line "de emergencia."
+	done
 
 _VayaalCP::
 	text "Tus #MON han"
@@ -1129,15 +1144,12 @@ _MicoloMap1cartel:
    line "Investigacion"
    cont "Midelar."
    done
-  
-_MicoloMap1juicio1:
-   text "Traigan al"
-   line "loro al"
-   cont "estrado!"
-   done
-   
+ 
 _MicoloMap1juicio2:
-   text "En cuanto acabe"
+   text "Traigan al loro"
+   line "al estrado!"
+   
+   para "En cuanto acabe"
    line "el juicio,"
    cont "despedazaremos"
    cont "al traidor"

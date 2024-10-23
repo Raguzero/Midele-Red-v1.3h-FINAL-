@@ -54,13 +54,13 @@ MicoloMap1TextPointers:
 	dw MicoloMap1Text6
 	dw MicoloMap1Text7
 	dw MicoloMap1Text8
-	dw MicoloMap1juicio1
 	dw MicoloMap1juicio2
 	dw MicoloMap1juicio3
 	dw MicoloMap1juicio4
 	dw MicoloMap1juicio5
 	dw MicoloMap1juicio6
 	dw MicoloMap1Pika
+	dw BoulderText
 	dw MicoloMap1PC
 	dw MicoloMap1diario
 	dw MicoloMap1diario2
@@ -71,6 +71,7 @@ MicoloMap1TextPointers:
 	dw MicoloMap1diario7
 	dw MicoloMap1diario8
 	dw MicoloMap1cartel
+	dw MicoloMap1PC2
 
 MicoloMap1TrainerHeader0:
 	dbEventFlagBit EVENT_GOOSES  ; DE MOMENTO ESTE
@@ -200,6 +201,35 @@ MicoloMap1PC:
 FinPC:
 	jp TextScriptEnd
 
+MicoloMap1PC2:	
+   TX_ASM
+   ld hl, ActivarSalidaPC
+   call PrintText
+   call YesNoChoice
+   ld a, [wCurrentMenuItem]
+   and a
+   jr nz, .NO
+   ld a, HS_ROCK_BLOCK
+   ld [wMissableObjectIndex], a
+   predef HideObject
+   call GBFadeOutToWhite
+   call Delay3
+   call GBFadeInFromWhite
+   ld hl, SalidaActivada
+   call PrintText
+   jr FinPC2
+.NO
+   ld a, HS_ROCK_BLOCK
+   ld [wMissableObjectIndex], a
+   predef ShowObject
+   call GBFadeOutToWhite
+   call Delay3
+   call GBFadeInFromWhite
+   ld hl, BloquearSalida
+   call PrintText
+FinPC2:
+	jp TextScriptEnd
+
 MicoloMap1BattleText2:
 	TX_FAR _MicoloMap1BattleText2
 	db "@"
@@ -323,6 +353,18 @@ MicoloMap1WinBattleText8:
 CurarPC:
 	TX_FAR _CurarPC
 	db "@"
+	
+ActivarSalidaPC:
+	TX_FAR _ActivarSalidaPC
+	db "@"
+	
+SalidaActivada:
+	TX_FAR _SalidaActivada
+	db "@"
+	
+BloquearSalida:
+	TX_FAR _BloquearSalida
+	db "@"
 
 VayaalCP:
 	TX_FAR _VayaalCP
@@ -367,22 +409,7 @@ MicoloMap1diario8:
 MicoloMap1cartel:
 	TX_FAR _MicoloMap1cartel
 	db "@"
-	
-MicoloMap1juicio1:
-    TX_ASM
-    ld a, MUSIC_Cornered
-    ld [wNewSoundID], a
-    call PlayMusic
-	ld hl, .hola1
-    call PrintText
-	ld a, MUSIC_SILPH_CO
-    ld [wNewSoundID], a
-    call PlayMusic
-    jp TextScriptEnd
-.hola1
-	TX_FAR _MicoloMap1juicio1
-	db "@"
-	
+
 MicoloMap1juicio2:
     TX_ASM
     ld a, MUSIC_Cornered
