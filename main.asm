@@ -1211,7 +1211,6 @@ INCLUDE "engine/overworld/trainers.asm"
 
 ; NUEVO PARA BATTLE EXP
 AnimateEXPBarAgain:
-	call LoadMonData
 	call IsCurrentMonBattleMon
 	ret nz
 	xor a
@@ -1224,18 +1223,18 @@ AnimateEXPBarAgain:
 	dec c
 	jr nz, .loop
 AnimateEXPBar:
-	call LoadMonData
 	call IsCurrentMonBattleMon
 	ret nz
 	ld a, SFX_HEAL_HP
-	;ld a, (SFX_02_3d - SFX_Headers_02) / 3 ; HP healing sound
 	call PlaySoundWaitForCurrent
 	ld hl, CalcEXPBarPixelLength
 	ld b, BANK(CalcEXPBarPixelLength)
 	call Bankswitch
-	ld a, [wEXPBarPixelLength]
+	ld hl, wEXPBarPixelLength
+	ld a, [hl]
 	ld b, a
 	ld a, [H_QUOTIENT + 3]
+	ld [hl], a
 	sub b
 	jr z, .done
 	ld b, a
@@ -1263,14 +1262,15 @@ AnimateEXPBar:
 	call CopyData
 	ld c, $20
 	jp DelayFrames
+
 KeepEXPBarFull:
 	call IsCurrentMonBattleMon
 	ret nz
 	ld a, [wEXPBarKeepFullFlag]
 	set 0, a
 	ld [wEXPBarKeepFullFlag], a
-	ld a, [wCurEnemyLVL]
 	ret
+
 IsCurrentMonBattleMon:
 	ld a, [wPlayerMonNumber]
 	ld b, a
