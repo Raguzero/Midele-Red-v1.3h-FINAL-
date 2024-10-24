@@ -304,6 +304,8 @@ HandlePokedexListMenu:
 	call HandleMenuInput
 	bit 1, a ; was the B button pressed?
 	jp nz, .buttonBPressed
+	bit BIT_A_BUTTON, a 
+	jp nz, .buttonAPressed ; avoids a bug where pressing down/up and then immediately A scrolls down twice instead of selecting the next pokemon
 .checkIfUpPressed
 	bit 6, a ; was Up pressed?
 	jr z, .checkIfDownPressed
@@ -437,12 +439,91 @@ ShowPokedexDataInternal:
 	pop af
 	ld [wd11e], a
 	call DrawDexEntryOnScreen
-	jr nc, .waitForButtonPress
+	jp nc, .waitForButtonPress
 
 	coord bc, 1, 11
 	ld a, 2
 	ld [$fff4], a
 	call TextCommandProcessor ; print pokedex description text
+;;;;;;;;;; PureRGBnote: ADDED: pokedex will display the pokemon's types and their base stats on a new third page.
+	CheckEvent EVENT_GOT_POKEDEX
+	jp z, .clearLetterPrintingFlags ; don't display this new third page if we're showing the starters before getting the pokedex.
+	ld hl, PromptText
+	call TextCommandProcessor
+	coord hl, 1, 10
+	lb bc, 7, 18
+	call ClearScreenArea
+	call PrintMonTypes
+	; print mon base stats
+	coord hl, 9, 10
+	ld de, BaseStatsText
+	call PlaceString
+	coord hl, 12, 11
+	ld de, HPText
+	call PlaceString
+	ld de, wMonHBaseHP
+	coord hl, 15, 11
+	lb bc, 1, 4
+	call PrintNumber 
+	coord hl, 11, 12
+	ld de, AtkText
+	call PlaceString
+	ld de, wMonHBaseAttack
+	coord hl, 15, 12
+	lb bc, 1, 4
+	call PrintNumber 
+	coord hl, 11, 13
+	ld de, DefText
+	call PlaceString
+	ld de, wMonHBaseDefense
+	coord hl, 15, 13
+	lb bc, 1, 4
+	call PrintNumber
+	coord hl, 11, 14
+	ld de, SpdText
+	call PlaceString
+	ld de, wMonHBaseSpeed
+	coord hl, 15, 14
+	lb bc, 1, 4
+	call PrintNumber
+	coord hl, 11, 15
+	ld de, SpcText
+	call PlaceString
+	ld de, wMonHBaseSpecial
+	coord hl, 15, 15
+	lb bc, 1, 4
+	call PrintNumber 
+	coord hl, 9, 16
+	ld de, TotalText
+	call PlaceString
+	; calculate the base stat total to print it
+	ld b, 0
+	ld a, [wMonHBaseHP]
+	ld hl, 0
+	ld c, a
+	add hl, bc
+	ld a, [wMonHBaseAttack]
+	ld c, a
+	add hl, bc
+	ld a, [wMonHBaseDefense]
+	ld c, a
+	add hl, bc
+	ld a, [wMonHBaseSpeed]
+	ld c, a
+	add hl, bc
+	ld a, [wMonHBaseSpecial]
+	ld c, a
+	add hl, bc
+	ld a, h
+	ld [wSum], a
+	ld a, l
+	ld [wSum+1], a
+	ld de, wSum
+	coord hl, 15, 16
+	lb bc, 2, 3
+	call PrintNumber
+.clearLetterPrintingFlags
+;;;;;;;;;;
 	xor a
 	ld [$fff4], a
 	jr .waitForButtonPress
@@ -621,6 +702,23 @@ DrawDexEntryOnScreen:
 	pop hl
 	inc hl ; hl = address of pokedex description text
 	scf
+	ret
+
+PrintMonTypes:
+	coord hl, 1, 11
+	ld de, DexType1Text
+	call PlaceString
+	coord hl, 2, 12
+	predef PrintMonType
+	ld a, [wMonHType1]
+	ld b, a
+	ld a, [wMonHType2]
+	cp b
+	jr z, .done ; don't print TYPE2/ if the pokemon has 1 type only.
+	coord hl, 1, 13
+	ld de, DexType2Text
+	call PlaceString
+.done
 	ret
 
 HeightWeightText:
@@ -1059,3 +1157,35 @@ IndexToPokedex:
 	ret
 
 INCLUDE "data/pokedex_order.asm"
+
+PromptText:
+	TX_WAIT
+	db "@"
+
+DexType1Text:
+	db "TYPE1/@"
+
+DexType2Text:
+	db "TYPE2/@"
+
+BaseStatsText:
+	db "BASE STATS@"
+
+HPText:
+	db "HP@"
+
+AtkText:
+	db "ATK@"
+
+DefText:
+	db "DEF@"
+
+SpdText:
+	db "SPEED@"
+
+SpcText:
+	db "SPEC@"
+
+TotalText:
+	db "TOTAL@"
+

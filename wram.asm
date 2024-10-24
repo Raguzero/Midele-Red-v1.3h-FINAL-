@@ -1241,7 +1241,8 @@ wFlags_0xcd60:: ; cd60
 ; bit 6: tried pushing against boulder once (you need to push twice before it will move)
 	ds 1
 
-	ds 9
+wSum:: ; a temp store for 16 bit values created by addition, used with PrintNumber to display the sum on screen
+	ds 8
 
 wActionResultOrTookBattleTurn:: ; cd6a
 ; This has overlapping related uses.
