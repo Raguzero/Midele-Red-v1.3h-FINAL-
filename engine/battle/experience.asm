@@ -396,9 +396,7 @@ GainedText:
 
 WithExpAllText:
 	TX_FAR _WithExpAllText
-	TX_ASM
-	ld hl, ExpPointsText
-	ret
+	db "@"
 
 BoostedText:
 	TX_FAR _BoostedText

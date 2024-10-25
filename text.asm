@@ -1447,7 +1447,8 @@ _GainedText::
 
 _WithExpAllText::
 	text "Party gained"
-	next "@"
+	line "EXP. Points!"
+	prompt
 
 _BoostedText::
 	text "a boosted"
