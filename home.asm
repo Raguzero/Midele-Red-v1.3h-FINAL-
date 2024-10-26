@@ -974,8 +974,6 @@ GroundRoseText::
 
 BoulderText::
 	TX_FAR _BoulderText
-	;NUEVO PARA FIELD MOVES
-	;db "@"
 	db $08 ; asm
 	
 	ld a, [wObtainedBadges]
@@ -986,8 +984,15 @@ BoulderText::
 	farcall HasPartyMove
 	ld a, [wWhichTrade]
 	and a
+	jr z, .startStrength
+	farcall CanPartyLearnMove
 	jr nz, .done
-	
+	ld b, HM_04
+	predef GetQuantityOfItemInBag
+	ld a, b
+	and a
+	jr z, .done
+.startStrength
 	ld a, [wWhichPokemon]
 	push af
 	call ManualTextScroll
@@ -995,10 +1000,8 @@ BoulderText::
 	ld [wWhichPokemon], a
 	call GetPartyMonName2
 	predef PrintStrengthTxt
-	
 .done
 	jp TextScriptEnd
-;NUEVO PARA FIELD MOVES
 
 MartSignText::
 	TX_FAR _MartSignText

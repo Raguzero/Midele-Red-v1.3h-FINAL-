@@ -17,16 +17,35 @@ TrySurf:
 
 	call IsSurfTile
 	jr nc, .no
+	
+; Check to make sure you aren't on top of a cliff or something.
+	ld hl,TilePairCollisionsWater
+	call CheckForTilePairCollisions2
+	jr c, .no
 
 	ld d, SURF
 	call HasPartyMove
+	jr z, .checkBadge
+	call CanPartyLearnMove
 	jr nz, .no
-
+	ld b, HM_03
+	predef GetQuantityOfItemInBag
+	ld a, b
+	and a
+	jr z, .no
+.checkBadge
 	ld a, [wObtainedBadges]
 	bit 4, a ; SOUL_BADGE
 	jr z, .no
-
+	
+; Are we allowed to surf here?
 	call Text2_EnterTheText
+	callba IsSurfingAllowed
+	ld hl,wd728
+	bit 1,[hl]
+	res 1,[hl]
+	jr z,.no2
+
 	ld hl,WaterIsCalmTxt
 	call PrintText
 	call YesNoChoice
@@ -64,8 +83,15 @@ TryCut:
 
 	ld d, CUT
 	call HasPartyMove
-    jr nz, .no2
-
+	jr z, .checkBadge
+	call CanPartyLearnMove
+	jr nz, .no2
+	ld b, HM_01
+	predef GetQuantityOfItemInBag
+	ld a, b
+	and a
+	jr z, .no2
+.checkBadge
 	ld a, [wObtainedBadges]
     bit 1, a ; CASCADE_BADGE
 	jr z, .no2
@@ -215,6 +241,52 @@ HasPartyMove::
 	pop bc
 	ret
 
+CanPartyLearnMove::
+; Return z (optional: in wWhichTrade) if a PartyMon can learn move d.
+; Updates wWhichPokemon.
+	push bc
+	push de
+	push hl
+	ld a, d
+	ld [wMoveNum], a
+	ld a, [wPartyCount]
+	and a
+	jr z, .no
+	ld e, a
+	ld d, 0
+	ld hl, wPartyMon1Species
+.loop
+	ld a, [hl]
+	ld [wcf91],a
+	push de
+	predef CanLearnTM ; check if the pokemon can learn the move
+	pop de
+	ld a,c
+	and a
+	jr nz,.yes
+	inc d
+	ld a, d
+	cp e
+	jr z, .no
+	ld hl, wPartyMon1Species
+    ld bc, wPartyMon2 - wPartyMon1
+    call AddNTimes
+	jr .loop
+.yes
+	ld a, d
+	ld [wWhichPokemon], a
+	xor a ; probably redundant
+	ld [wWhichTrade], a
+	jr .done
+.no
+	ld a, 1
+	and a
+	ld [wWhichTrade], a
+.done
+	pop hl
+	pop de
+	pop bc
+	ret
 
 Text2_EnterTheText:
 	call EnableAutoTextBoxDrawing
@@ -226,7 +298,7 @@ Text2_EnterTheText:
 Text3_DrakesDeception:
 	ld a,[H_LOADEDROMBANK]
 	push af
-jp CloseTextDisplay
+	jp CloseTextDisplay
 	
 CanBeCutTxt:
 	text "This tree can be"
@@ -239,4 +311,4 @@ WantToCutTxt:
 WaterIsCalmTxt:
 	text "The water is calm."
 	line "Would you like to"
-	cont "SURF?@@"
+	cont "use SURF?@@"

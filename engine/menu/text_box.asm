@@ -744,6 +744,13 @@ PokemonMenuEntries:
 	next "CANCEL@"
 
 GetMonFieldMoves:
+	xor a
+	ld [wTempCoins1], a
+	; wTempCoins1 holds XXX1 if fly is already in list 
+	;                   XX1X if flash is already in list 
+	;                   X1XX if fly was already checked to be added
+	;                   1XXX if flash was already checked to be added
+	;                   0 otherwise
 	ld a, [wWhichPokemon]
 	ld hl, wPartyMon1Moves
 	ld bc, wPartyMon2 - wPartyMon1
@@ -756,7 +763,7 @@ GetMonFieldMoves:
 	push hl
 .nextMove
 	dec c
-	jr z, .done
+	jp z, .done
 	ld a, [de] ; move ID
 	and a
 	jr z, .done
@@ -766,14 +773,38 @@ GetMonFieldMoves:
 .fieldMoveLoop
 	ld a, [hli]
 	cp $ff
-	jr z, .nextMove ; if the move is not a field move
+	jr z, .addFly ; if the move is not a field move
 	cp b
 	jr z, .foundFieldMove
 	inc hl
 	inc hl
 	jr .fieldMoveLoop
 .foundFieldMove
+	push hl
+	ld hl, wTempCoins1
 	ld a, b
+	cp FLY
+	jr z, .foundFly
+	jr .foundFieldMoveChecked
+.foundFly
+	bit 0, [hl]
+	jr nz, .foundFieldMoveCheckFlash
+	set 0, [hl]
+	jr .foundFieldMoveChecked
+.nextMoveCheckedFlyFlash
+	pop hl
+	jp .nextMove
+.foundFieldMoveCheckFlash
+	cp FLASH
+	jr z, .foundFlash
+	jr .foundFieldMoveChecked
+.foundFlash
+	bit 1, [hl]
+	jr nz, .nextMoveCheckedFlyFlash
+	set 1, [hl]
+	jr .foundFieldMoveChecked
+.foundFieldMoveChecked
+	pop hl
 	ld [wLastFieldMoveID], a
 	ld a, [hli] ; field move name index
 	ld b, [hl] ; field move leftmost X coordinate
@@ -791,8 +822,124 @@ GetMonFieldMoves:
 	ld a, [wLastFieldMoveID]
 	ld b, a
 	jr .loop
+.addFly
+	ld a, [wTempCoins1]
+	bit 0, a
+	jr nz, .addFlash
+	bit 2, a
+	jr nz, .addFlash
+	set 2, a
+	ld [wTempCoins1], a
+	call CheckIfCanFly
+	jr nc, .addFlash
+	push bc
+	push de
+	push hl
+	ld b, HM_02
+	predef GetQuantityOfItemInBag
+	ld a, b
+	and a
+	jr nz, .hasTMFly
+	pop hl
+	pop de
+	pop bc
+	jp .nextMove
 .done
 	pop hl
+	xor a
+	ld [wTempCoins1], a 
+	ret
+.hasTMFly
+	ld a, [wWhichPokemon]
+	ld hl, wPartyMon1Species
+	ld bc, wPartyMon2 - wPartyMon1
+	call AddNTimes
+	ld a, [hl]
+	ld [wcf91],a
+	ld a, FLY
+	ld [wMoveNum], a
+	predef CanLearnTM ; check if the pokemon can learn the move
+	ld a,c
+	pop hl
+	pop de
+	pop bc
+	and a
+	jp z, .nextMove
+	push hl
+	ld hl, wTempCoins1
+	set 0, [hl]
+	pop hl
+	ld b, FLY
+	ld a,b
+	ld hl, FieldMoveDisplayData
+	jr .addMoveFindInFieldMoveDisplayData
+.addMoveFindInFieldMoveDisplayData
+	ld a, [hli]
+	cp b
+	jp z, .foundFieldMove
+	jr .addMoveFindInFieldMoveDisplayData
+.addFlash
+	ld a, [wTempCoins1]
+	bit 1, a
+	jp nz, .nextMove
+	bit 3, a
+	jp nz, .nextMove
+	set 3, a
+	ld [wTempCoins1], a
+	ld a,[wCurMap]
+	cp ROCK_TUNNEL_1
+	jr z, .inRockTunnel
+	cp ROCK_TUNNEL_2
+	jr z, .inRockTunnel
+	jp .nextMove
+.inRockTunnel
+	push bc
+	push de
+	push hl
+	ld b, HM_05
+	predef GetQuantityOfItemInBag
+	ld a, b
+	and a
+	jr nz, .hasTMFlash
+	pop hl
+	pop de
+	pop bc
+	jp .nextMove
+.hasTMFlash
+	ld a, [wWhichPokemon]
+	ld hl, wPartyMon1Species
+	ld bc, wPartyMon2 - wPartyMon1
+	call AddNTimes
+	ld a, [hl]
+	ld [wcf91],a
+	ld a, FLASH
+	ld [wMoveNum], a
+	predef CanLearnTM ; check if the pokemon can learn the move
+	ld a,c
+	pop hl
+	pop de
+	pop bc
+	and a
+	jp z, .nextMove
+	push hl
+	ld hl, wTempCoins1
+	set 1, [hl]
+	pop hl
+	ld b, FLASH
+	ld a,b
+	ld hl, FieldMoveDisplayData
+	jr .addMoveFindInFieldMoveDisplayData
+	
+CheckIfCanFly::
+	ld a, [wCurMap]
+	cp CELADON_MART_ROOF
+	jr z, .canFly
+	call CheckIfInOutsideMap
+	jr z, .canFly
+	and a
+	ret
+.canFly
+	scf
 	ret
 
 ; Format: [Move id], [name index], [leftmost tile]

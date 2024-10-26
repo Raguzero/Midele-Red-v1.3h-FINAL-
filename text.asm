@@ -2693,13 +2693,14 @@ _CableClubNPCMakingPreparationsText::
 _UsedStrengthText::
 	TX_RAM wcd6d
 	text " used"
-	line "STRENGTH.@@"
+	line "STRENGTH."
+	prompt
 
 _CanMoveBouldersText::
 	TX_RAM wcd6d
 	text " can"
 	line "move boulders."
-	prompt
+	done
 
 _CurrentTooFastText::
 	text "The current is"
