@@ -50,6 +50,10 @@ MainMenu:
 	ld de, NewGameText
 	call PlaceString
 .next2
+	coord hl, $00, $11
+	ld de, VersionText
+	call PlaceString
+
 	ld hl, wd730
 	res 6, [hl]
 	call UpdateSprites
@@ -342,6 +346,40 @@ CableClubOptionsText:
 	next "CANCEL@"
 
 DisplayContinueGameInfo:
+    push hl
+    ld hl, wObtainedBadges
+    ld b, $1
+    call CountSetBits
+    ld a, [wNumSetBits]
+	pop hl
+	cp 8 ; ALL BADGES
+	jr z, .DisplayContinueGameInfoAllBadges
+	xor a
+	ld [H_AUTOBGTRANSFERENABLED], a
+	coord hl, 2, 6
+	ld b, 10
+	ld c, 16
+	call TextBoxBorder
+	coord hl, 3, 8
+	ld de, SaveScreenContinueInfoText
+	call PlaceString
+	coord hl, 16, 8
+	call PrintLevelCap
+	coord hl, 12, 10
+	ld de, wPlayerName
+	call PlaceString
+	coord hl, 17, 12
+	call PrintNumBadges
+	coord hl, 16, 14
+	call PrintNumOwnedMons
+	coord hl, 13, 16
+	call PrintPlayTime
+	ld a, 1
+	ld [H_AUTOBGTRANSFERENABLED], a
+	ld c, 30
+	jp DelayFrames
+	
+.DisplayContinueGameInfoAllBadges:
 	xor a
 	ld [H_AUTOBGTRANSFERENABLED], a
 	coord hl, 4, 7
@@ -400,6 +438,22 @@ PrintNumBadges:
 	ld de, wNumSetBits
 	lb bc, 1, 2
 	jp PrintNumber
+	
+PrintLevelCap:
+    push hl
+    ld hl, wObtainedBadges
+    ld b, $1
+    call CountSetBits
+	ld a, [wNumSetBits]
+	ld b, 0
+	ld c, a
+	ld hl, BadgeLevelTable
+	add hl, bc
+	ld d, h
+	ld e, l
+	pop hl
+	lb bc, 1, 3
+	jp PrintNumber
 
 PrintNumOwnedMons:
 	push hl
@@ -426,6 +480,16 @@ SaveScreenInfoText:
 	next "BADGES    "
 	next "#DEX    "
 	next "TIME@"
+	
+SaveScreenContinueInfoText:
+	db   "LEVEL CAP    "
+	next  "PLAYER"
+	next "BADGES    "
+	next "#DEX    "
+	next "TIME@"
+	
+VersionText:
+	db "  Midele Red v1.4@"
 
 DisplayOptionMenu:
 	coord hl, 0, 0
