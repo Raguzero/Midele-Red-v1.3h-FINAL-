@@ -424,12 +424,12 @@ MainInBattleLoop:
 	ld a, [wEscapedFromBattle]
 	and a
 	ret nz ; return if pokedoll was used to escape from battle
-	ld a, [wBattleMonStatus]
-; NUEVO PARA QUE SUEÑO SEA COMO EN GEN 2
-	;and (1 << FRZ) | SLP ; is mon frozen or asleep?
-    and (1 << FRZ) 
-; NUEVO PARA QUE SUEÑO SEA COMO EN GEN 2
-	jr nz, .selectEnemyMove ; if so, jump
+;joenote - This whole thing is problematic. Just comment it all out.
+;		-allow the player to select a move even if frozen in order to prevent PP underflow and link desyncs
+;		-also allow the player to select a move if you don't want sleep to waste a turn on wakeup
+;	ld a, [wBattleMonStatus]
+;	and (1 << FRZ) 
+;	jr nz, .selectEnemyMove ; if so, jump
 	ld a, [wPlayerBattleStatus1]
 	and (1 << STORING_ENERGY) | (1 << USING_TRAPPING_MOVE) ; check player is using Bide or using a multi-turn attack like wrap
 	jr nz, .selectEnemyMove ; if so, jump
@@ -2056,7 +2056,7 @@ DrawPlayerHUDAndHPBar:
 	call PlaceString
 	call PrintPlayerMonGender ; NUEVO PARA GENEROS
 	call PrintPlayerMonShiny ; NUEVO PARA SHINY
-	call PrintEXPBar ; NUEVO PARA BATTLE EXP
+	farcall PrintEXPBar ; NUEVO PARA BATTLE EXP
 	ld hl, wBattleMonSpecies
 	ld de, wLoadedMon
 	ld bc, wBattleMonDVs - wBattleMonSpecies
@@ -3755,12 +3755,28 @@ CheckPlayerStatusConditions:
 .FrozenCheck
 	bit FRZ, [hl] ; frozen?
 	jr z, .HeldInPlaceCheck
+	; Adding chance to defrost naturally
+	call BattleRandom
+	cp $34 ; ~20% chance of defrost
+	jr c, .defrostMon
+	; Continues to original routine, calling you frozen
 	ld hl, IsFrozenText
 	call PrintText
 	xor a
 	ld [wPlayerUsedMove], a
 	ld hl, ExecutePlayerMoveDone ; player can't move this turn
 	jp .returnToHL
+	
+.defrostMon ; New routine to thaw Pokemon, called from FrozenCheck
+	ld hl, wBattleMonStatus
+	res FRZ, [hl]
+	xor a
+	inc a
+	ld [H_WHOSETURN],a
+	ld hl, FireDefrostedText
+	call PrintText
+	xor a
+	ld [H_WHOSETURN],a
 
 .HeldInPlaceCheck
 	ld a, [wEnemyBattleStatus1]
@@ -4291,7 +4307,7 @@ PrintMoveFailureText:
 	ld a, [wCriticalHitOrOHKO]
 	cp $ff
 	jr nz, .gotTextToPrint
-	ld hl, UnaffectedText
+	ld hl, IsUnaffectedText
 .gotTextToPrint
 	push de
 	call PrintText
@@ -4353,10 +4369,6 @@ AttackMissedText:
 
 KeptGoingAndCrashedText:
 	TX_FAR _KeptGoingAndCrashedText
-	db "@"
-
-UnaffectedText:
-	TX_FAR _UnaffectedText
 	db "@"
 
 PrintDoesntAffectText:
@@ -6582,12 +6594,27 @@ CheckEnemyStatusConditions:
 .checkIfFrozen
 	bit FRZ, [hl]
 	jr z, .checkIfTrapped
+	; Add chance to defrost naturally
+	call BattleRandom
+	cp $34 ; ~20% chance of defrost
+	jr c, .defrostMon
+	; Original routine continues here
 	ld hl, IsFrozenText
 	call PrintText
 	xor a
 	ld [wEnemyUsedMove], a
 	ld hl, ExecuteEnemyMoveDone ; enemy can't move this turn
 	jp .enemyReturnToHL
+.defrostMon ; New routine to thaw mon
+	ld hl, wEnemyMonStatus
+	res FRZ, [hl]
+	xor a
+	ld [H_WHOSETURN],a
+	ld hl, FireDefrostedText
+	call PrintText
+	xor a
+	inc a
+	ld [H_WHOSETURN],a
 .checkIfTrapped
 	ld a, [wPlayerBattleStatus1]
 	bit USING_TRAPPING_MOVE, a ; is the player using a multi-turn attack like warp

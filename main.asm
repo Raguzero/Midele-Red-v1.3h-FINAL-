@@ -2021,13 +2021,12 @@ EnemyShinySparkleCoordsEnd:
 SECTION "bank2C",ROMX,BANK[$2C]
 INCLUDE "scripts/move_relearner.asm"
 INCLUDE "scripts/move_deleter.asm"
-
-SECTION "bank2D",ROMX,BANK[$2D]
-INCLUDE "engine/battle/core.asm"
-
 ; NUEVO PARA BATTLE EXP
 INCLUDE "engine/battle/exp_bar_print.asm"
 ; NUEVO PARA BATTLE EXP
+
+SECTION "bank2D",ROMX,BANK[$2D]
+INCLUDE "engine/battle/core.asm"
 
 SECTION "field moves", ROMX,BANK[$2E]
 
