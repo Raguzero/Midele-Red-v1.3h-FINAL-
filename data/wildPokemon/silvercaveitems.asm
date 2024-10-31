@@ -1,13 +1,13 @@
 SilverMonsItem:
 	db $0F
-	db 48, GOLBAT
-	db 46, GOLBAT
-	db 50, GOLBAT
-	db 46, PARASECT
-	db 48, PARASECT
-	db 50, PARASECT
-	db 52, PARASECT
-	db 45, HAUNTER
-	db 50, GOLBAT
-	db 55, PARASECT
+	db 70, GOLBAT
+	db 71, PARASECT
+	db 72, CROBAT
+	db 73, LICKITUNG
+	db 72, PROBOPASS
+	db 71, GOLEM
+	db 72, MAGNEZONE
+	db 73, MIMIKYU
+	db 73, HAUNTER
+	db 72, GENGAR
 	db $00

@@ -7,7 +7,7 @@ SilverOutsideMons:
 	db 68,LURANTIS
 	db 67,VIKAVOLT
 	db 68,DODRIO
-	db 67,ABOMASNOW
+	db 67,SCYTHER
 	db 67,ABOMASNOW
 	db 70,SMEARGLE
 	
