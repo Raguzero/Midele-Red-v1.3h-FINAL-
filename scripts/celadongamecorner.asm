@@ -144,6 +144,7 @@ CeladonGameCornerText2:
 	ld a, [wCurrentMenuItem]
 	and a
 	jr nz, .asm_48d0f
+.wantsToBuyMoreCoins
 	ld b, COIN_CASE
 	call IsItemInBag
 	jr z, .asm_48d19
@@ -152,7 +153,7 @@ CeladonGameCornerText2:
 	xor a
 	ld [hMoney], a
 	ld [hMoney + 2], a
-	ld a, $10
+	ld a, $80
 	ld [hMoney + 1], a
 	call HasEnoughMoney
 	jr nc, .asm_48cdb
@@ -162,7 +163,7 @@ CeladonGameCornerText2:
 	xor a
 	ld [hMoney], a
 	ld [hMoney + 2], a
-	ld a, $10
+	ld a, $80
 	ld [hMoney + 1], a
 	ld hl, hMoney + 2
 	ld de, wPlayerMoney + 2
@@ -170,15 +171,24 @@ CeladonGameCornerText2:
 	predef SubBCDPredef
 	xor a
 	ld [hUnusedCoinsByte], a
-	ld [hCoins], a
-	ld a, $50
 	ld [hCoins + 1], a
-	ld de, wPlayerCoins + 1
-	ld hl, hCoins + 1
-	ld c, $2
+	ldh [hCoins + 2], a
+	ld a, $05
+	ldh [hCoins], a
+	ld de, wPlayerCoins + 2
+	ld hl, hCoins + 2
+	ld c, $3
 	predef AddBCDPredef
 	call CeladonGameCornerScript_48f1e
 	ld hl, CeladonGameCornerText_48d27
+	call PrintText
+	ld hl, CeladonGameCornerText_another500
+	call PrintText
+	call YesNoChoice
+	ld a, [wCurrentMenuItem]
+	and a
+	jr z, .wantsToBuyMoreCoins
+	ld hl, CeladonGameCornerThanks
 	jr .asm_48d1c
 .asm_48d0f
 	ld hl, CeladonGameCornerText_48d2c
@@ -190,7 +200,16 @@ CeladonGameCornerText2:
 	ld hl, CeladonGameCornerText_48d3b
 .asm_48d1c
 	call PrintText
+.done
 	jp TextScriptEnd
+	
+CeladonGameCornerThanks:
+	TX_FAR _Thanks2Text
+	db "@"
+
+CeladonGameCornerText_another500:
+	TX_FAR _CeladonGameCornerText_another500
+	db "@"
 
 CeladonGameCornerText_48d22:
 	TX_FAR _CeladonGameCornerText_48d22
