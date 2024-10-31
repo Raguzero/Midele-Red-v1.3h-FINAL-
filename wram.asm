@@ -3027,10 +3027,14 @@ wPlayerGender::
 ; $00 = male
 ; $01 = female
     ds 1
+; NUEVO PARA GENDER
+
+wExtraFlags::
+; bit 1 = Set means Exp All is on
+	ds 1
 
 ; unused
-    ds 55
-; NUEVO PARA GENDER
+    ds 54
 
 wObtainedHiddenItemsFlags::
 	ds 14

@@ -2888,6 +2888,16 @@ _VitaminNoEffectText::
 	text "It won't have any"
 	line "effect."
 	prompt
+	
+_ExpShareTurnOn::
+	text "<PLAYER> turned"
+	line "on EXP.ALL."
+	prompt
+
+_ExpShareTurnOff::
+	text "<PLAYER> turned"
+	line "off EXP.ALL."
+	prompt
 
 _ThrewBaitText::
 	text "<PLAYER> threw"

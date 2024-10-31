@@ -10,9 +10,11 @@ _Route15GateUpstairsText_4968c::
 	cont "of EXP for each"
 	cont "#MON."
 
-	para "If you don't need"
-	line "it, you should "
-	cont "store it via PC."
+	para "Turn it ON to"
+	line "work."
+	cont "If you don't need"
+	cont "it, you should" 
+	cont "turn it OFF."
 	done
 
 _Route15GateUpstairsText_49698::
