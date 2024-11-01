@@ -360,14 +360,16 @@ OverworldLoopLessDelay::
 .notCinnabarGym
 	ld hl, wd72e
 	set 5, [hl]
-	ld a, [wCurMap]
-	cp OAKS_LAB
+	ld a, [wOaksLabCurScript]
+	cp $C
 	jr z, .noFaintCheck ; no blacking out if the player lost to the rival in Oak's lab
 	; NUEVO RANDOM TRAINER
+	ld a, [wCurMap]
 	cp INDIGO_PLATEAU_LOBBY
     jr z, .noFaintCheck
 	; NUEVO RANDOM TRAINER
 	; NUEVO POLICIA RUTA 4
+	ld a, [wCurMap]
     cp ROUTE_4
     jr nz, .noRuta4
     ld a, [wRoute4CurScript]
