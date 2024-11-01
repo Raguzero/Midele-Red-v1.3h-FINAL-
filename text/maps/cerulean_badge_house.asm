@@ -35,7 +35,7 @@ _CeruleanHouse2Text_74e96::
 	prompt
 
 _CeruleanHouse2Text_74e9b::
-	text "#MON up to L30"
+	text "#MON up to L40"
 	line "will obey you."
 
 	para "Any higher, they"
@@ -58,7 +58,7 @@ _CeruleanHouse2Text_74ea0::
 	prompt
 
 _CeruleanHouse2Text_74ea5::
-	text "#MON up to L50"
+	text "#MON up to L60"
 	line "will obey you."
 
 	para "Any higher, they"
