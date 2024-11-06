@@ -3194,7 +3194,7 @@ HackDrawBattleMoveInfo:
 	
 	;print % after accuracy
 	coord hl, 8, 10
-	ld [hl], "/" ;unused Japanese letter tile; hack replaces it with a % sign
+	ld [hl], $EA ;unused Japanese letter tile; hack replaces it with a % sign
 	
 	;print current PP
 	coord hl, 4, 11
