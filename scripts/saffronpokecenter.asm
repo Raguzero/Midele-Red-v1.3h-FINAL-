@@ -7,6 +7,7 @@ SaffronPokecenterTextPointers:
 	dw SaffronPokecenterText2
 	dw SaffronPokecenterText3
 	dw SaffronTradeNurseText
+	dw SaffronPokecenterText4
 
 SaffronHealNurseText:
 	TX_POKECENTER_NURSE
@@ -21,3 +22,7 @@ SaffronPokecenterText3:
 
 SaffronTradeNurseText:
 	TX_CABLE_CLUB_RECEPTIONIST
+
+SaffronPokecenterText4:
+	TX_FAR MoveRelearnerText1
+	db "@"

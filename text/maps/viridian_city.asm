@@ -182,7 +182,6 @@ _ViridianCityText14::
 ; CARTEL MOVE DELETER RELEARNER
 _ViridianCityText16::
 	text "Move Deleter"
-	line "and Move Relearn"
 	done
 ; CARTEL MOVE DELETER RELEARNER
 

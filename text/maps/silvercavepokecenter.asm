@@ -9,10 +9,3 @@ _SilverCavePokecenterText1:
 	cont "feel they can go"
 	cont "anywhere..."
 	done
-
-_SilverCavePokecenterText2:
-	text "Trainers who seek"
-	line "power climb MT."
-	cont "SILVER despite its"
-	cont "many dangers..."
-	done

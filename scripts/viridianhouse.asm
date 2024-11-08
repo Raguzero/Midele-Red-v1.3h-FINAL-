@@ -13,8 +13,7 @@ ViridianHouseText1:
 	db "@"
 
 ViridianHouseText2:
-	;TX_FAR _ViridianHouseText2
-	TX_FAR MoveRelearnerText1
+	TX_FAR _ViridianHouseText2
 	db "@"
 
 ViridianHouseText3:

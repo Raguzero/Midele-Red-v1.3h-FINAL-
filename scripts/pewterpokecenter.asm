@@ -7,12 +7,17 @@ PewterPokecenterTextPointers:
 	dw PewterPokecenterText2
 	dw PewterJigglypuffText
 	dw PewterTradeNurseText
+	dw PewterPokecenterText3
 
 PewterHealNurseText:
 	TX_POKECENTER_NURSE
 
 PewterPokecenterText2:
 	TX_FAR _PewterPokecenterText2
+	db "@"
+	
+PewterPokecenterText3:
+	TX_FAR MoveRelearnerText1
 	db "@"
 
 PewterJigglypuffText:

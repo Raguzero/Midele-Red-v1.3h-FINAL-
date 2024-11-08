@@ -12,7 +12,7 @@ IndigoPlateauLobbyScript:
   ld [wIndigoPlateauLobbyCurScript], a
   jr .baseIndigoScript
 .victoriaIndigo
-  ld a, $8
+  ld a, $9
   ld [hSpriteIndexOrTextID], a
   call DisplayTextID
   call EndTrainerBattle
@@ -30,7 +30,7 @@ IndigoPlateauLobbyScript:
   ld [wBadgeNameTile], a
   call GiveItem
   jr nc, .MochilaLlena
-  ld a, $9
+  ld a, 10
   ld [hSpriteIndexOrTextID], a
   call DisplayTextID
 .limpiaScript
@@ -55,7 +55,7 @@ IndigoPlateauLobbyScript:
 
 ; NUEVO PARA RANDOM TRAINER
 .MochilaLlena
-  ld a, $7
+  ld a, $8
   ld [hSpriteIndexOrTextID], a
   call DisplayTextID
   jr .limpiaScript
@@ -67,6 +67,7 @@ IndigoPlateauLobbyTextPointers:
 	dw IndigoPlateauLobbyText3
 	dw IndigoCashierText
 	dw IndigoTradeNurseText
+	dw IndigoPlateauLobbyText4
 	dw RandTrainerText1 ; NUEVO PARA RANDOM TRAINER
 	dw RandTrainerMochilaLlena  ; NUEVO PARA RANDOM TRAINER
 	dw RandTrainerFinish  ; NUEVO PARA RANDOM TRAINER
@@ -184,3 +185,7 @@ RandTrainerItemObtenido:
 	TX_SFX_ITEM_1
 	db "@"	  
 ; NUEVO PARA RANDOM TRAINER
+
+IndigoPlateauLobbyText4:
+	TX_FAR MoveRelearnerText1
+	db "@"

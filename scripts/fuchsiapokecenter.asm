@@ -7,6 +7,7 @@ FuchsiaPokecenterTextPointers:
 	dw FuchsiaPokecenterText2
 	dw FuchsiaPokecenterText3
 	dw FuchsiaTradeNurseText
+	dw FuchsiaPokecenterText4
 
 FuchsiaHealNurseText:
 	TX_POKECENTER_NURSE
@@ -21,3 +22,7 @@ FuchsiaPokecenterText3:
 
 FuchsiaTradeNurseText:
 	TX_CABLE_CLUB_RECEPTIONIST
+
+FuchsiaPokecenterText4:
+	TX_FAR MoveRelearnerText1
+	db "@"

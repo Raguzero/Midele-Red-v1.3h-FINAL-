@@ -7,6 +7,7 @@ ViridianPokecenterTextPointers:
 	dw ViridianPokeCenterText2
 	dw ViridianPokeCenterText3
 	dw ViridianTradeNurseText
+	dw ViridianPokeCenterText4
 
 ViridianHealNurseText:
 	TX_POKECENTER_NURSE
@@ -21,3 +22,7 @@ ViridianPokeCenterText3:
 
 ViridianTradeNurseText:
 	TX_CABLE_CLUB_RECEPTIONIST
+
+ViridianPokeCenterText4:
+	TX_FAR MoveRelearnerText1
+	db "@"

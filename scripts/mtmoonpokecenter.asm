@@ -9,6 +9,7 @@ MtMoonPokecenterTextPointers:
 	dw MagikarpSalesmanText
 	dw MtMoonPokecenterText5
 	dw MtMoonTradeNurseText
+	dw MtMoonPokecenterText6
 
 MtMoonHealNurseText:
 	db $ff
@@ -92,3 +93,7 @@ MtMoonPokecenterText5:
 
 MtMoonTradeNurseText:
 	db $f6
+	
+MtMoonPokecenterText6:
+	TX_FAR MoveRelearnerText1
+	db "@"

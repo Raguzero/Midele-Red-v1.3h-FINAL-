@@ -7,6 +7,7 @@ RockTunnelPokecenterTextPointers:
 	dw RockTunnelPokecenterText2
 	dw RockTunnelPokecenterText3
 	dw RockTunnelTradeNurseText
+	dw RockTunnelPokecenterText4
 
 RockTunnelHealNurseText:
 	db $ff
@@ -21,3 +22,7 @@ RockTunnelPokecenterText3:
 
 RockTunnelTradeNurseText:
 	db $f6
+
+RockTunnelPokecenterText4:
+	TX_FAR MoveRelearnerText1
+	db "@"

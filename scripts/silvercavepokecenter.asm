@@ -19,5 +19,5 @@ SilverCavePokecenterText1:
 	db "@"
 
 SilverCavePokecenterText2:
-	TX_FAR _SilverCavePokecenterText2
+	TX_FAR MoveRelearnerText1
 	db "@"

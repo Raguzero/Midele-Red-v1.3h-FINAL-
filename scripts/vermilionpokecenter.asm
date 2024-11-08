@@ -7,6 +7,7 @@ VermilionPokecenterTextPointers:
 	dw VermilionPokecenterText2
 	dw VermilionPokecenterText3
 	dw VermilionTradeNurseText
+	dw VermilionPokecenterText4
 
 VermilionHealNurseText:
 	TX_POKECENTER_NURSE
@@ -21,3 +22,7 @@ VermilionPokecenterText3:
 
 VermilionTradeNurseText:
 	TX_CABLE_CLUB_RECEPTIONIST
+	
+VermilionPokecenterText4:
+	TX_FAR MoveRelearnerText1
+	db "@"
