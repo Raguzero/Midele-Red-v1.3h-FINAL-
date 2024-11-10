@@ -8671,10 +8671,10 @@ StatModifierDownEffect:
 	ld hl, wPlayerMonStatMods
 	ld de, wEnemyMoveEffect
 	ld bc, wPlayerBattleStatus1
-	ld a, [wLinkState]
-	cp LINK_STATE_BATTLING
-	jr z, .statModifierDownEffect
 	; NUEVO PARA Stat-down moves no longer have a 25% miss chance in AI matches
+	;ld a, [wLinkState]
+	;cp LINK_STATE_BATTLING
+	;jr z, .statModifierDownEffect
 	;call BattleRandom
 	;cp $40 ; 1/4 chance to miss by in regular battle
 	;jp c, MoveMissed
