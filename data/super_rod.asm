@@ -34,6 +34,9 @@ SuperRodData:
 	dbw UNKNOWN_DUNGEON_2, FishingGroup9
 	dbw UNKNOWN_DUNGEON_3, FishingGroup9
 	dbw UNKNOWN_DUNGEON_1, FishingGroup9
+	dbw SILVER_CAVE_OUTSIDE, FishingGroup9
+	dbw SILVER_CAVE_ROOM_2, FishingGroup9   
+	dbw ROUTE_28, FishingGroup9
 	db $FF
 
 ; fishing groups
