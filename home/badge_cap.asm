@@ -19,12 +19,12 @@ GetBadgeLevel::
 	ret
 
 BadgeLevelTable: ; 3fef
-	db 20 ; 0 badges, level 20
-	db 30 ; 1 badge, level 30
-	db 35 ; 2 badges, level 35
-	db 45 ; 3 badges, level 45
-	db 55 ; 4 badges, level 55
-	db 55 ; 5 badges, level 55
-	db 60 ; 6 badges, level 60
-	db 65 ; 7 badges, level 65
+	db 15 ; 0 badges, level 15
+	db 25 ; 1 badge, level 25
+	db 30 ; 2 badges, level 30
+	db 40 ; 3 badges, level 40
+	db 45 ; 4 badges, level 45
+	db 50 ; 5 badges, level 50
+	db 55 ; 6 badges, level 55
+	db 60 ; 7 badges, level 60
 	db 150 ; 8 badges, level 100
