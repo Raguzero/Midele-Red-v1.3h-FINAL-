@@ -540,15 +540,29 @@ PlayBattleMusic::
     jr z, .rse
     cp NUMEL
     jr z, .rse
+    cp METAGROSS
+    jr z, .rse
     cp LUDICOLO
     jr z, .rse
+	cp PROBOPASS
+    jr z, .dpp
 	cp SNOVER
+    jr z, .dpp
+	cp ABOMASNOW
     jr z, .dpp
 	cp LUCARIO
     jr z, .dpp
 	cp SKORUPI
     jr z, .dpp
 	cp DRAPION
+    jr z, .dpp
+	cp RHYPERIOR
+    jr z, .dpp
+	cp MAGNEZONE
+    jr z, .dpp
+	cp ELECTIVIRE
+    jr z, .dpp
+	cp MAGMORTAR
     jr z, .dpp
 	cp YAMASK
     jr z, .bw
@@ -562,22 +576,28 @@ PlayBattleMusic::
     jr z, .bw
 	cp DRILLBUR
     jr z, .bw
+	cp EXCADRILL
+    jp z, .bw
 	cp TYNAMO
-    jr z, .bw
+    jp z, .bw
 	cp EELEKTRIK
-    jr z, .bw
+    jp z, .bw
 	cp HYDREIGON
-    jr z, .bw
+    jp z, .bw
+	cp KROOKODILE
+    jp z, .bw
+	cp CONKELDURR
+    jp z, .bw
 	cp STUNFISK
-    jr z, .bw
+    jp z, .bw
 	cp ZOROARK
-    jr z, .bw
+    jp z, .bw
 	cp SNEASEL
-    jr z, .gsc
+    jp z, .gsc
 	cp SMEARGLE
-    jr z, .gsc
+    jp z, .gsc
 	cp TYRANITAR
-    jr z, .gsc
+    jp z, .gsc
 	cp STEELIX
     jp z, .gsc
 	cp HERACROSS
@@ -617,6 +637,8 @@ PlayBattleMusic::
 	cp GRUBBIN
     jp z, .sm
 	cp CHARJABUG
+    jp z, .sm
+	cp VIKAVOLT
     jp z, .sm
 	cp SANDYGAST
     jp z, .sm
