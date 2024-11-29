@@ -18,7 +18,7 @@ db ICE_PUNCH
 db 0
 db 5 ; growth rate
 ; learnset
-	tmlearn 3,6,8
+	tmlearn 1,3,5,6,8
 	tmlearn 9,10,13,14,15
 	tmlearn 20,21,22
 	tmlearn 26,31,32

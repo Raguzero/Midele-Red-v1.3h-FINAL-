@@ -18,7 +18,7 @@ db RAGE
 db SAND_ATTACK
 db 3 ; growth rate
 ; learnset
-	tmlearn 6,8
+	tmlearn 1,5,6,8
 	tmlearn 9,10,15
 	tmlearn 18,20
 	tmlearn 26,28,31,32

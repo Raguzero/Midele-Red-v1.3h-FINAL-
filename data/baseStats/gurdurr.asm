@@ -18,7 +18,7 @@ db COMET_PUNCH
 db 0
 db 3 ; growth rate
 ; learnset
-	tmlearn 6,8
+	tmlearn 1,5,6,8
 	tmlearn 9,10
 	tmlearn 17,18,19,20
 	tmlearn 28,31,32

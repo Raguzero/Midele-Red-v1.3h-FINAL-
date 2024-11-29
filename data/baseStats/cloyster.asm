@@ -14,7 +14,7 @@ dw CloysterPicBack
 ; attacks known at lvl 0
 db WITHDRAW
 db SUPERSONIC
-db CLAMP
+db 0
 db 0
 db 5 ; growth rate
 ; learnset

@@ -13,7 +13,7 @@ dw BeedrillPicFront
 dw BeedrillPicBack
 ; attacks known at lvl 0
 db FURY_ATTACK
-db 0
+db POISON_STING
 db 0
 db 0
 db 0 ; growth rate
