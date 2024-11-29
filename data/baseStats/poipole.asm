@@ -6,7 +6,7 @@ db 73 ; base speed
 db 73 ; base special
 db POISON ; species type 1
 db POISON ; species type 2
-db 45 ; catch rate
+db 145 ; catch rate
 db 189 ; base exp yield
 INCBIN "pic/bmon/poipole.pic",0,1 ; 55, sprite dimensions
 dw PoipolePicFront
