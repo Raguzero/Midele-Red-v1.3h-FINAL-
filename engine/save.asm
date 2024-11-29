@@ -396,7 +396,7 @@ ChangeBox::
 	call SaveSAVtoSRAM
 	ld hl, wChangeBoxSavedMapTextPointer
 	call SetMapTextPointer
-	ld a, SFX_SAVE
+	ld a, SFX_HEAL_HP
 	call PlaySoundWaitForCurrent
 	call WaitForSoundToFinish
 	ret
